@@ -27,10 +27,11 @@ int main() {
 	addrto.sin_addr.s_addr=htonl(INADDR_BROADCAST);
 	addrto.sin_port=htons(6000);
 	int nlen=sizeof(addrto);
+	char msg[4096];
 	while(1) {
-		sleep(1);
 		//从广播地址发送消息
-		char msg[]="abcdef";
+		printf("input: ");
+		scanf("%s",msg);
 		int ret=sendto(sock, msg, strlen(msg), 0, (struct sockaddr *)&addrto, nlen);
 		if(ret<0) {  
 			printf("send error....\n");
